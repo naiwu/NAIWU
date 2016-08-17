@@ -320,3 +320,9 @@
 再通过
 	<include layout="@layout/topbar" /> 
 调用.进一步实现解耦.
+
+----------
+
+**注意title和titleTextColor这两个属性最新系统已经拥有,会与之发生冲突.**
+
+----------
