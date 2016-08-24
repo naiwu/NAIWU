@@ -123,4 +123,31 @@
 	        this.invalidate();
 	    }
 	}
+##动态的view
+
+完成了静态效果的绘制,那么如何实现动态效果呢?只需要要在ondraw()方法里调用invalidate()方法
+通知View进行重绘.不过,不需要每一次完成就通知View进行重新绘制.这样会刷新太快影响效果.
+因此,可以通过以下方法延迟View绘制.
+
+	postInvalidateDelayed()
+
+
+#自定义ViewGroup
+
+![](img/1.png)
 	
+#事件拦截分发机制
+![](img/2.png)
+
+----------
+
+![](img/3.png)
+
+
+----------
+
+![](img/4.png)
+
+----------
+
+![](img/5.png)
