@@ -63,6 +63,8 @@
 * SurfaceView使用
 * Surfaceview实例
 
+#android动画效果
+###android属性动画控制
 	
 
 
