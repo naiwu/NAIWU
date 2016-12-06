@@ -26,3 +26,9 @@
  话会创建一个新的任务栈。这种启动模式可以用于退出整个应用：将主Activity设置为singleTask，然后在要退出的Activity中转到主Activity，从而将主
  Activity上的Activity清除。然后重写onNewIntent方法，加上一句finish，结束掉最后一个页面。
  
+ singleInstance：该声明的Activity会存在一个新的任务栈中，而且该任务栈只有该Activity。
+ 这种模式通常用于需要与程序分离的界面
+ 
+ 如果在一个singleTop或者singleInstance模式的Activity中去通过StartActivityForResult方法启动另一个ActivityB。则系统
+ 将会直接返回Activity.RESULT_CANCELED.而不会等待。不同的Task之中，默认是不能传递数据，如果需要，则只能通过Intent来传。
+ 
