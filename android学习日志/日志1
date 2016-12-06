@@ -1,0 +1,28 @@
+ Activity与调用栈的关系
+ 
+ 1. oncreate创建基本UI元素
+ 2. onpause释放Activity占用的资源（比如camera，sensor之类的）
+ 3. ondestroy Activity被销毁，清理开启过的线程
+ 
+ 当Activity从可见到不可见，都会调用onstart方法
+ 
+ Activity页面销毁的时候，会回调onsaveInstancestate方法保存在bundle
+ 
+ Activity页面创建时候，oncreate和onrestoreInstanceState方法中可以获取到之前保存的Bundle数据
+ 
+ 如果是用finish方法结束的Activity，不会回调onsaveInstancestate方法。而且系统已经默认实现了控件的状态缓存。
+ 
+ 需要特别注意：一个Task中可以有来自不同App的Activity，同一个app的Activity可以存在不同的Task当中
+ 
+ 如何使用Activity栈中的Activity，让其打破栈的后进先出的管理，设置特权？
+ 可以通过清单文件中android：launchMode属性和intent的flag来设置
+ 
+ standard
+ 
+ singleTop：会检测栈顶的Activity是否需要创建。如果是就直接引用，不是就在栈顶创建新的页面。适用于接受消息弹出的页面
+ 这种模式下会回调onNewIntent方法。
+ 
+ singleTask： 检测整个栈，将检测到的Activity置顶，并销毁该Activity上面的所有Activity。如果是其他程序的Activity是该属性，本程序创建的
+ 话会创建一个新的任务栈。这种启动模式可以用于退出整个应用：将主Activity设置为singleTask，然后在要退出的Activity中转到主Activity，从而将主
+ Activity上的Activity清除。然后重写onNewIntent方法，加上一句finish，结束掉最后一个页面。
+ 
